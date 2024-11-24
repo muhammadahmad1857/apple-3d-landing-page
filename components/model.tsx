@@ -7,12 +7,10 @@ gsap.registerPlugin(ScrollTrigger);
 const Model = () => {
   useGSAP(() => {
     gsap.to("#heading", {
-      ScrollTrigger: {
-        trigger: "#heading",
-        top: "0% 0%",
+    
         y: 0,
         opacity: 1,
-      },
+      
     });
   });
 

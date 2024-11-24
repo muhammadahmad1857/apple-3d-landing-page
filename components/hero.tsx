@@ -11,7 +11,6 @@ const Hero = () => {
   const [videoSrc, setVideoSrc] = useState(
     isSmallScreen ? smallHeroVideo : heroVideo,
   );
-  console.log("hi", isSmallScreen);
 
   const handleVideoChange = () => {
     if (window.innerWidth < 760) {
@@ -22,7 +21,6 @@ const Hero = () => {
   };
   useEffect(() => {
     handleVideoChange();
-    console.log("I mounted");
   }, [isSmallScreen]);
   useGSAP(() => {
     gsap.to("#hero", {
@@ -41,7 +39,7 @@ const Hero = () => {
         <p id="hero" className="hero-title">
           Iphone 15 pro
         </p>
-        <div className="flex max-h-[calc(100%-100px)] w-9/12 items-center justify-center border border-red-500 md:w-10/12">
+        <div className="flex max-h-[calc(100%-100px)] w-9/12 items-center justify-center md:w-10/12">
           <video
             autoPlay
             muted
