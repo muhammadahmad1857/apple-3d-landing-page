@@ -65,16 +65,16 @@ const VideoCarousel = () => {
 
   useEffect(() => {
     let currentProgress = 0;
-    let span = videoSpanRef.current;
+    const span = videoSpanRef.current;
 
     if (span[videoId]) {
       // animation to move the indicator
-      let anim = gsap.to(span[videoId], {
+      const anim = gsap.to(span[videoId], {
         onUpdate: () => {
           // get the progress of the video
           const progress = Math.ceil(anim.progress() * 100);
 
-          if (progress != currentProgress) {
+          if (progress !== currentProgress) {
             currentProgress = progress;
 
             // set the width of the progress bar
@@ -108,7 +108,7 @@ const VideoCarousel = () => {
         },
       });
 
-      if (videoId == 0) {
+      if (videoId === 0) {
         anim.restart();
       }
 
@@ -173,10 +173,10 @@ const VideoCarousel = () => {
   return (
     <>
       <div className="flex items-center">
-        {hightlightsSlides.map((list, i) => (
+        {hightlightsSlides.map((list:HighlightSlide, i) => (
           <div key={list.id} id="slider" className="sm:pr-20 pr-10">
             <div className="video-carousel_container">
-              <div className="w-full h-full flex-center rounded-3xl overflow-hidden bg-black">
+              <div className="size-full flex-center rounded-3xl overflow-hidden bg-black">
                 <video
                   id="video"
                   playsInline={true}
@@ -196,7 +196,7 @@ const VideoCarousel = () => {
                   onPlay={() =>
                     setVideo((pre) => ({ ...pre, isPlaying: true }))
                   }
-                  onLoadedMetadata={(e) => handleLoadedMetaData()}
+                  onLoadedMetadata={() => handleLoadedMetaData()}
                 >
                   <source src={list.video} type="video/mp4" />
                 </video>
@@ -418,7 +418,7 @@ export default VideoCarousel;
 //         {hightlightsSlides.map((list, i) => (
 //           <div key={list.id} id="slider" className="sm:pr-20 pr-10">
 //             <div className="video-carousel_container">
-//               <div className="w-full h-full flex-center rounded-3xl overflow-hidden bg-black">
+//               <div className="size-full flex-center rounded-3xl overflow-hidden bg-black">
 //                 <video
 //                   id="video"
 //                   playsInline
