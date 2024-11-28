@@ -66,12 +66,13 @@ import Lights from "./lights";
 import ModelLoader from "./modelLoader";
 import Model from "./iphone";
 import React,{ Suspense, useEffect, useRef } from "react";
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 
 interface ModelViewProps {
   index: number;
   groupRef: React.RefObject<THREE.Group>;
   gsapType: string;
-  controlRef: React.RefObject<OrbitControls>;
+  controlRef: React.RefObject<OrbitControlsImpl>;
   setRotationState: (angle: number) => void;
   size: string;
   item: {

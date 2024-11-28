@@ -147,7 +147,9 @@ import React,{ useEffect, useRef, useState } from "react";
 import { yellowImg } from "@/app/utils";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { View,OrbitControls} from "@react-three/drei";
+import { View} from "@react-three/drei";
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
+
 import { models, sizes } from "../constants";
 import { animateWithGsapTimeline } from "@/app/utils/animations";
 
@@ -168,8 +170,8 @@ const Model: React.FC = () => {
   });
 
   // Refs for controlling the camera and models
-  const cameraControlSmall = useRef<OrbitControls | null>(null);
-  const cameraControlLarge = useRef<OrbitControls | null>(null);
+  const cameraControlSmall = useRef<OrbitControlsImpl | null>(null);
+  const cameraControlLarge = useRef<OrbitControlsImpl | null>(null);
 
   // Refs for the model groups
   const small = useRef<THREE.Group>(new THREE.Group());
