@@ -3,6 +3,8 @@
 import * as THREE from "three";
 import React, { useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
+import { GLTF } from 'three-stdlib';
+
 interface ModelProps {
   item: {
     img: string;
@@ -10,8 +12,17 @@ interface ModelProps {
   };
   scale: [number, number, number]; // Array with 3 numbers for scale
 }
+
+type GLTFResult = GLTF & {
+  nodes: {
+    [key: string]: THREE.Mesh;
+  };
+  materials: {
+    [key: string]: THREE.Material;
+  };
+};
 function Model({item,scale}:ModelProps) {
-  const { nodes, materials } = useGLTF("/models/scene.glb");
+  const { nodes, materials } = useGLTF("/models/scene.glb") as GLTFResult;
 
   const texture = useTexture(item.img);
 
