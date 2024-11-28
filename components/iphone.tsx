@@ -25,7 +25,7 @@ function Model({item,scale}:ModelProps) {
         material[0] !== "jlzuBkUzuJqgiAK" &&
         material[0] !== "xNrofRCqOXXHVZt"
       ) {
-        material[1].color = new THREE.Color(item.color[0]);
+       ( material[1]  as THREE.MeshStandardMaterial).color = new THREE.Color(item.color[0]);
       }
       material[1].needsUpdate = true;
     });
