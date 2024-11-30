@@ -103,7 +103,7 @@ canvas {
   }
 
   .control-btn {
-    @apply flex-center ml-4 rounded-full bg-gray-300 p-4 backdrop-blur;
+    @apply flex-center ml-4 cursor-pointer rounded-full bg-gray-300 p-4 backdrop-blur;
   }
 
   .hero-title {
@@ -149,7 +149,7 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index:100000;
+  z-index: 100000;
   position: relative;
 }
 

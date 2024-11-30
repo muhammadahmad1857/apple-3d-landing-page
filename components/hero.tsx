@@ -13,7 +13,7 @@ const Hero = () => {
   );
 
   const handleVideoChange = () => {
-    if (window.innerWidth < 760) {
+    if (isSmallScreen) {
       setVideoSrc(smallHeroVideo);
     } else {
       setVideoSrc(heroVideo);

@@ -2,9 +2,10 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image"
+import Image from "next/image";
 import { hightlightsSlides } from "../constants";
 import { pauseImg, playImg, replayImg } from "@/app/utils";
+import { useMediaQuery } from "react-responsive";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,8 +27,10 @@ const VideoCarousel = () => {
   const videoRef = useRef<HTMLVideoElement[]>([]);
   const videoSpanRef = useRef<HTMLSpanElement[]>([]);
   const videoDivRef = useRef<HTMLSpanElement[]>([]);
+ // Media queries using react-responsive
+ const isSmallScreen = useMediaQuery({ query: "(max-width: 760px)" });
+ const isMediumScreen = useMediaQuery({ query: "(max-width: 1200px)" });
 
-  // video and indicator
   const [video, setVideo] = useState<VideoState>({
     isEnd: false,
     startPlay: false,
@@ -76,16 +79,15 @@ const VideoCarousel = () => {
 
           if (progress !== currentProgress) {
             currentProgress = progress;
+            const width = isSmallScreen
+            ? "10vw"
+            : isMediumScreen
+            ? "10vw"
+            : "4vw";
 
-            // set the width of the progress bar
-            gsap.to(videoDivRef.current[videoId], {
-              width:
-                window.innerWidth < 760
-                  ? "10vw" // mobile
-                  : window.innerWidth < 1200
-                    ? "10vw" // tablet
-                    : "4vw", // laptop
-            });
+          gsap.to(videoDivRef.current[videoId], {
+            width,
+          });
 
             // set the background color of the progress bar
             gsap.to(span[videoId], {
@@ -234,10 +236,10 @@ const VideoCarousel = () => {
           ))}
         </div>
 
-        <button className="control-btn">
+        <button className="control-btn cursor-pointer">
           <Image
-          width={18}
-          height={18}
+            width={18}
+            height={18}
             src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
             alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
             onClick={
