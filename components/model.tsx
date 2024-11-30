@@ -242,8 +242,8 @@ const Model: React.FC = () => {
                 right: 0,
                 overflow: "hidden",
               }}
-              eventSource={document.getElementById("root") || undefined}
-            >
+              eventSource={typeof window !== 'undefined' ? document.getElementById("root") || undefined : undefined}
+              >
               <View.Port />
             </Canvas>
           </div>
